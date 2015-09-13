@@ -17,7 +17,7 @@ while(1):
     mask2=cv2.inRange(hsv,lower_red,upper_red)
     res=cv2.bitwise_and(frame,frame,mask=mask+mask1+mask2)
     cv2.imshow('frame',frame)
-    cv2.imshow('mask',mask1)
+    #cv2.imshow('mask',mask1)
     cv2.imshow('res',res)
     k=cv2.waitKey(5) & 0xFF
     if k==27:
