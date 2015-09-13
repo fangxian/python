@@ -1,0 +1,28 @@
+from PIL import Image,ImageFilter
+from numpy import *
+'''
+im=Image.new('RGB',(300,300),color=(150,200,100))
+im.save('/users/yufangxian/Documents/exercise/picture/test.jpg','JPEG')
+'''
+im=Image.open('/users/yufangxian/Documents/exercise/picture/2.jpg','r')
+#im.show()
+#im1=Image.new('RGB',(300,400))
+#im1.save('/users/yufangxian/Documents/exercise/picture/4.jpg','JPEG')
+#out=im1.convert('L')
+#out.show()
+#out=im.copy()
+#im.Imagechops.offset().show()
+#out.show()
+#out1=im.crop(box=(50,50,150,150))
+#im.filter(ImageFilter.GaussianBlur(radius=3)).show()
+#print(im.getpixel((100,200)))
+#print(im.histogram(mask=None,extrema=None))
+#out1.show()
+#out1.draft('RGB',(300,300))
+im1=Image.open('/users/yufangxian/Documents/exercise/picture/4.jpg','r')
+im.paste(im1,box=(10,10),mask=None)
+#im.save('/users/yufangxian/Documents/exercise/picture/q.jpg','JPEG')
+#im.point(lut,mode=None)
+im.show()
+im.convert(mode='1')
+im.tobitmap(name='image').show()
