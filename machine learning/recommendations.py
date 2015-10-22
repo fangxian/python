@@ -70,6 +70,28 @@ def matches(prefs,person,n=5,similarity=sim_pearson):
 	scores.reverse()
 	return scores[0:n]
 
+def make_recommendations(prefs,person,similarity=sim_pearson):
+	totals = {}
+	simsum = {}
+	for other in prefs:
+		if other == person:
+			continue
+		#get the similarity	
+		sim = similarity(prefs,person,other)
+		if sim <= 0:
+			continue
+		#sum score and similarity sum
+		for item in prefs[other]:
+			if item not in prefs[person] or prefs[person][item] == 0:
+				totals.setdefault(item,0)
+				totals[item] += prefs[other][item] * sim 
+				simsum.setdefault(item,0)
+				simsum[item] += sim
+	#sum score/similarity score			
+	ranking = [(total/simsum[item],item) for item, total in totals.items()]
+	ranking.sort()
+	ranking.reverse()
+	return ranking
 #get all Euclidean Distance Score and Pearson Correlation Score
 person = []
 for k in critics:
@@ -84,4 +106,9 @@ for i in range(len(person)):
 #get matches
 for k in critics:
 	print(k,matches(critics,k))
+
+#make recommendations
+for k in critics:
+	print('recommendations:')
+	print(k,make_recommendations(critics,k))
 
