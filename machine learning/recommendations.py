@@ -23,37 +23,37 @@ from math import sqrt
 #Euclidean distance score
 def sim_distance(prefs,person1,person2):
 	si = {}
-	for item in prefs[person1]:
-		if item in prefs[person2]:
-			si[item] = 1
-	#if person1 and person2 do not have any share item
+	for movie in prefs[person1]:
+		if movie in prefs[person2]:
+			si[movie] = 1
+	#if person1 and person2 do not have any share movie
 	if len(si) == 0:
 		return 0
 	#computing 
 	sum_of_squares = 0
-	for item in prefs[person1]:
-		if item in prefs[person2]:
-			sum_of_squares += pow(prefs[person1][item]-prefs[person2][item],2)
+	for movie in prefs[person1]:
+		if movie in prefs[person2]:
+			sum_of_squares += pow(prefs[person1][movie]-prefs[person2][movie],2)
 
 	return 1/(1+sqrt(sum_of_squares))
 
 #Pearson Correlation Score
 def sim_pearson(prefs,person1,person2):
 	si={}
-	for item in prefs[person1]:
-		if item in prefs[person2]:
-			si[item] = 1
+	for movie in prefs[person1]:
+		if movie in prefs[person2]:
+			si[movie] = 1
 	n = len(si)
 	if n == 0:
-		#if there is no share item,return 1
+		#if there is no share movie,return 1
 		return 1
-	sum1 = sum([prefs[person1][item] for item in si])
-	sum2 = sum([prefs[person2][item] for item in si])
+	sum1 = sum([prefs[person1][movie] for movie in si])
+	sum2 = sum([prefs[person2][movie] for movie in si])
 
-	sum1_sq = sum([pow(prefs[person1][item],2) for item in si])
-	sum2_sq = sum([pow(prefs[person2][item],2) for item in si])
+	sum1_sq = sum([pow(prefs[person1][movie],2) for movie in si])
+	sum2_sq = sum([pow(prefs[person2][movie],2) for movie in si])
 
-	sum_multipy = sum([prefs[person1][item] * prefs[person2][item] for item in si])
+	sum_multipy = sum([prefs[person1][movie] * prefs[person2][movie] for movie in si])
 
 	#computing pearson score
 	num = sum_multipy - (sum1 * sum2/n)
@@ -73,22 +73,22 @@ def matches(prefs,person,n=5,similarity=sim_pearson):
 def make_recommendations(prefs,person,similarity=sim_pearson):
 	totals = {}
 	simsum = {}
-	for other in prefs:
-		if other == person:
+	for other_person in prefs:
+		if other_person == person:
 			continue
 		#get the similarity	
-		sim = similarity(prefs,person,other)
+		sim = similarity(prefs,person,other_person)
 		if sim <= 0:
 			continue
 		#sum score and similarity sum
-		for item in prefs[other]:
-			if item not in prefs[person] or prefs[person][item] == 0:
-				totals.setdefault(item,0)
-				totals[item] += prefs[other][item] * sim 
-				simsum.setdefault(item,0)
-				simsum[item] += sim
+		for movie in prefs[other_person]:
+			if movie not in prefs[person] or prefs[person][movie] == 0:
+				totals.setdefault(movie,0)
+				totals[movie] += prefs[other_person][movie] * sim 
+				simsum.setdefault(movie,0)
+				simsum[movie] += sim
 	#sum score/similarity score			
-	ranking = [(total/simsum[item],item) for item, total in totals.items()]
+	ranking = [(total/simsum[movie],movie) for movie, total in totals.items()]
 	ranking.sort()
 	ranking.reverse()
 	return ranking
