@@ -20,6 +20,7 @@ critics={'Lisa Rose': {'Lady in the Water': 2.5, 'Snakes on a Plane': 3.5,
 
 from math import sqrt
 
+#Euclidean distance score
 def sim_distance(prefs,person1,person2):
 	si = {}
 	for item in prefs[person1]:
@@ -36,6 +37,40 @@ def sim_distance(prefs,person1,person2):
 
 	return 1/(1+sqrt(sum_of_squares))
 
+#Pearson Correlation Score
+def sim_pearson(prefs,person1,person2):
+	si={}
+	for item in prefs[person1]:
+		if item in prefs[person2]:
+			si[item] = 1
+	n = len(si)
+	if n == 0:
+		#if there is no share item,return 1
+		return 1
+	sum1 = sum([prefs[person1][item] for item in si])
+	sum2 = sum([prefs[person2][item] for item in si])
+
+	sum1_sq = sum([pow(prefs[person1][item],2) for item in si])
+	sum2_sq = sum([pow(prefs[person2][item],2) for item in si])
+
+	sum_multipy = sum([prefs[person1][item] * prefs[person2][item] for item in si])
+
+	#computing pearson score
+	num = sum_multipy - (sum1 * sum2/n)
+	den = sqrt((sum1_sq - pow(sum1, 2)/n) * (sum2_sq - pow(sum2, 2)/n))
+	if den == 0:
+		return 0
+
+	r = num/den
+	return r
+
+def matches(prefs,person,n=5,similarity=sim_pearson):
+	scores = [(similarity(prefs,person,other), other) for other in prefs if other!=person]
+	scores.sort()
+	scores.reverse()
+	return scores[0:n]
+
+#get all Euclidean Distance Score and Pearson Correlation Score
 person = []
 for k in critics:
 	person.append(k)
@@ -44,3 +79,9 @@ for i in range(len(person)):
 	#k=i+1
 	for k in range(i+1,len(person)):
 		print(person[i], person[k], sim_distance(critics,person[i],person[k]))
+		print(person[i], person[k], sim_pearson(critics,person[i],person[k]))
+
+#get matches
+for k in critics:
+	print(k,matches(critics,k))
+
