@@ -71,6 +71,23 @@ def pearson_score(prefs,person1,person2):
 
 #print(pearson_score(critics,'Toby','Lisa Rose'))
 
+def computing_tanimoto(prefs,person1,person2):
+	s={}
+	s1=0
+	s2=0
+	for item in prefs[person1]:
+		if item in prefs[person2]:
+			s[item]=1
+	if len(s) == 0:
+		return 0
+	for item in s:
+		s1+=prefs[person1][item]*prefs[person2][item]
+		s2+=pow(prefs[person1][item],2)+pow(prefs[person2][item],2)
+	result=s2-s1
+	return s1/result
+#print(computing_tanimoto(critics,'Lisa Rose','Gene Seymour'))
+
+
 #return the top matches
 def Topmatches(prefs,person,n=5,similarity=pearson_score):
 	scores=[]
