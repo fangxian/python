@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Question, Choice
+from .models import Question, Choice, Daily
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.views import generic
+from django.utils import timezone
 # Create your views here.
 
 
@@ -13,7 +14,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.order_by('-pub_date')[:5]
+        return Question.objects.filter(pub_date__lte=timezone.now())
 '''
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -46,6 +47,9 @@ def results(request,question_id):
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'polls/results.html', {'question': question})
 '''
+class DailyView(generic.DetailView):
+    model = Daily
+    template_name = 'polls/detail.html'
 
 def vote(request, question_id):
     p = get_object_or_404(Question, pk=question_id)
