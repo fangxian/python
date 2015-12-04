@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Question, Choice, Daily
+from .models import Question, Choice, DailyItem
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.views import generic
@@ -47,8 +47,8 @@ def results(request,question_id):
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'polls/results.html', {'question': question})
 '''
-class DailyView(generic.DetailView):
-    model = Daily
+class DailyItemView(generic.DetailView):
+    model = DailyItem
     template_name = 'polls/detail.html'
 
 def vote(request, question_id):
