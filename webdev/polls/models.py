@@ -41,7 +41,7 @@ class DailyContext(models.Model):
     body = models.ForeignKey(DailyItem)
     daily_context = models.TextField(max_length=10000)
     #daily_file= models.FilePathField(path='/photo', match= None,recursive=True)
-    daily_image = models.ImageField(upload_to='photo', null=True, blank=True)
+    daily_image = models.ImageField(upload_to='uploadImages', null=True, blank=True)
     def __str__(self):
         return self.daily_context
 
