@@ -5,15 +5,16 @@ import os
 
 
 class Crawler:
-    def __init__(self, link):
+    def __init__(self, link, pro_name):
         self.link = link
+        self.name = pro_name
 
     def do_crawl_hero(self):
         html = urlopen(self.link)
         bs_obj = BeautifulSoup(html.read(), "lxml")
         table = bs_obj.findAll("table")[0]
         #rows = table.findAll("tr")
-        path = os.getcwd() + "/hero.csv"
+        path = os.getcwd() + "/" + self.name + "_hero.csv"
         csvFile = open(path, "wt")
         writer = csv.writer(csvFile)
         try:
@@ -25,7 +26,7 @@ class Crawler:
             for row in table.findAll("tr"):
                 csvRow = []
                 for cell in row.findAll("td"):
-                    csvRow.append(cell.get_text())
+                    csvRow.append(cell.get_text().strip())
                 writer.writerow(csvRow)
         finally:
             csvFile.close()
@@ -34,14 +35,14 @@ class Crawler:
         html = urlopen(self.link)
         bs_obj = BeautifulSoup(html.read(), "lxml")
         table = bs_obj.findAll("table")[0]
-        path = os.getcwd() + "/"+option +".csv"
+        path = os.getcwd() + "/" + self.name + "_" + option +".csv"
         csvFile = open(path, "wt")
         writer = csv.writer(csvFile)
         try:
             for row in table.findAll("thead"):
                 headRow = []
                 for cell in row.findAll("th"):
-                    headRow.append(cell.get_text())
+                    headRow.append(cell.get_text().strip())
                 writer.writerow(headRow)
             for row in table.findAll("tr"):
                 csvRow = []

@@ -1,11 +1,6 @@
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
-import csv
-import pandas as pd
-import json
-import os
 from Crawler import Crawler
-
+import pandas as pd
+import csv
 
 def do_herocrawle(dotamax):
     dotamax.do_crawl_hero()
@@ -27,9 +22,12 @@ def data_visualization():
 
 
 if __name__ == '__main__':
-    #link = input("input the website to crawl:")
-    dotamax_hero = Crawler("http://dotamax.com/player/hero/91698091/")
+    pro_name = input("input the player name:")
+    link = input("input the website to crawl:")
+    dotamax_hero = Crawler(link, pro_name)
     do_herocrawle(dotamax_hero)
+    #do not include the pro and vh in the item link
+    item_link = input("input item link:")
     for option in ["pro", "vh"]:
-        dotamax_item = Crawler("http://dotamax.com/player/items/91698091/?hero=55&skill="+option)
+        dotamax_item = Crawler(item_link+option, pro_name)
         do_itemcrawle(dotamax_item, option)
