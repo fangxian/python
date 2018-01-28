@@ -22,11 +22,11 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MAIL_SERVER'] = 'smtp.live.com'
 app.config['MAIL_PORT'] = 25
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME') #'fangxian1108@hotmail.com'
-app.config['MAIL_PASSWORD'] = os.environ.get('MAIL)PASSWORD') #'yu19891108'
+app.config['MAIL_USERNAME'] = 'fangxian1108@hotmail.com' #'fangxian1108@hotmail.com'
+app.config['MAIL_PASSWORD'] = 'yu19891108' #'yu19891108'
 app.config['FLASKY_MAIL_SUBJECT_PREFIX'] = '[Flasky]'
 app.config['FLASKY_MAIL_SENDER'] = 'fangxian1108@hotmail.com'
-app.config['FLASKY_ADMIN'] = os.environ.get('FLASKY_ADMIN')#'352500311@qq.com'
+app.config['FLASKY_ADMIN'] = '352500311@qq.com'
 
 manager = Manager(app)
 bootstrap = Bootstrap(app)

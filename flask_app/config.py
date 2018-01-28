@@ -9,11 +9,12 @@ class Config:
     MAIL_SERVER = 'smtp.live.com'
     MAIL_PORT = 25
     MAIL_USE_TLS = True
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+    MAIL_USERNAME = 'fangxian1108@hotmail.com'
+    MAIL_PASSWORD = 'yu19891108'
     FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
-    FLASKY_MAIL_SENDER = 'Flasky Admin <fangxian1108@hotmail.com>'
-    FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
+    FLASKY_MAIL_SENDER = 'fangxian1108@hotmail.com'
+    FLASKY_ADMIN = '352500311@qq.com'
+    FLASKY_POSTS_PER_PAGE = 20
 
     @staticmethod
     def init_app(app):
