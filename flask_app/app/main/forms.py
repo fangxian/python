@@ -4,6 +4,8 @@ from wtforms.validators import DataRequired, Length, Email, Regexp
 from ..models import Role, User
 from wtforms import ValidationError
 from flask_pagedown.fields import PageDownField
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
+
 
 class NameForm(FlaskForm):
     name = StringField('What is your name?', validators=[DataRequired()])
@@ -52,3 +54,11 @@ class PostForm(FlaskForm):
 class CommentForm(FlaskForm):
     body = StringField('', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+
+class ArticleForm(FlaskForm):
+    title = StringField(u"标题", validators=[DataRequired()])
+    # category = QuerySelectField(u"分类", query_factory=getUserFactory(['id', 'name']), get_label='name'))
+    tags = StringField(u"标签", validators=[DataRequired()])
+    content = PageDownField(u"正文", validators=[DataRequired()])
+    submit = SubmitField(u"发布")
