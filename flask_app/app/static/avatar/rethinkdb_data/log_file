@@ -1,0 +1,18 @@
+2018-02-11T09:42:17.971907000 40.040121s notice: Recursively removing directory /Users/yufangxian/My_git/python/flask_app/app/static/avatar/rethinkdb_data/tmp
+2018-02-11T09:42:17.974089000 40.042308s notice: Initializing directory /Users/yufangxian/My_git/python/flask_app/app/static/avatar/rethinkdb_data
+2018-02-11T09:42:17.974263000 40.042476s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/Users/yufangxian/My_git/python/flask_app/app/static/avatar/rethinkdb_data' did not already exist or is empty.)
+2018-02-11T09:42:17.974300000 40.042512s notice: Running rethinkdb 2.3.6 (CLANG 8.1.0 (clang-802.0.42))...
+2018-02-11T09:42:17.993811000 40.062024s notice: Running on Darwin 16.6.0 x86_64
+2018-02-11T09:42:17.993855000 40.062067s notice: Loading data from directory /Users/yufangxian/My_git/python/flask_app/app/static/avatar/rethinkdb_data
+2018-02-11T09:42:18.153400000 40.221612s info: Automatically using cache size of 4095 MB
+2018-02-11T09:42:18.153940000 40.222152s notice: Listening for intracluster connections on port 29015
+2018-02-11T09:42:18.155773000 40.223985s notice: Listening for client driver connections on port 28015
+2018-02-11T09:42:18.155897000 40.224109s notice: Listening for administrative HTTP connections on port 8080
+2018-02-11T09:42:18.155906000 40.224118s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2018-02-11T09:42:18.155910000 40.224122s notice: Listening on driver addresses: 127.0.0.1, ::1
+2018-02-11T09:42:18.155913000 40.224125s notice: Listening on http addresses: 127.0.0.1, ::1
+2018-02-11T09:42:18.155917000 40.224128s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2018-02-11T09:42:18.155920000 40.224132s notice: Server ready, "YuFangxiandeMacBook_Pro_local_pv4" 090be33b-84f8-485d-a7c5-9f3eeeef1bbf
+2018-02-11T09:42:32.115506000 54.184453s info: Table 4490d324-99e3-4592-a4c3-90eb3ae171bf: Starting a new Raft election for term 1.
+2018-02-11T09:42:32.115815000 54.184763s info: Table 4490d324-99e3-4592-a4c3-90eb3ae171bf: Added replica on this server.
+2018-02-11T09:42:32.142636000 54.211583s info: Table 4490d324-99e3-4592-a4c3-90eb3ae171bf: This server is Raft leader for term 1. Latest log index is 0.

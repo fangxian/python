@@ -3,7 +3,11 @@
     <li class="post">
         <div class="post-thumbnail">
             <a href="{{ url_for('.user', username=post.author.username) }}">
+                {% if post.author.real_avatar %}
+                <img class="img-rounded profile-thumbnail" src="{{ post.author.real_avatar }}" width=40px height=40px>
+                {% else %}
                 <img class="img-rounded profile-thumbnail" src="{{ post.author.gravatar(size=40) }}">
+                {% endif %}
             </a>
         </div>
         <div class="post-content">
@@ -28,6 +32,9 @@
                 {% endif %}
                 <a href="{{ url_for('.post', id=post.id) }}">
                     <span class="label label-default">Permalink</span>
+                </a>
+                <a href="{{ url_for('.post', id=post.id) }}#comments">
+                    <span class="label label-primary">{{ post.comments.count() }} Comments</span>
                 </a>
             </div>
         </div>
